@@ -8,10 +8,10 @@
     />
     <meta name="theme-color" content="#000000" />
     <link
-      href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,900|Varela"
+      href="https://fonts.googleapis.com/css?family=Varela:400,600,700,900|Varela"
       rel="stylesheet"
     />
-    <link rel="shortcut icon" href="../resources/images/icon.png" />
+    <link rel="shortcut icon" href="../resources/images/rentaroom.jpg" />
     <title>DNSite</title>
     <style>
       * {
@@ -31,20 +31,20 @@
         font-family: "Varela", sans-serif;
         font-size: 40vh;
         font-weight: 400;
-        color: rgb(255, 88, 0);
+        color: rgb(255, 255, 0);
         line-height: 35vh;
         letter-spacing: 10px;
       }
       .error403 h2 {
         color: white;
-        font-family: "Montserrat", sans-serif;
+        font-family: "Varela", sans-serif;
         font-weight: 400;
         font-size: 8.5vh;
         letter-spacing: 5px;
       }
       .error403 h3 {
         color: white;
-        font-family: "Montserrat", sans-serif;
+        font-family: "Varela", sans-serif;
         font-weight: 400;
         font-size: 3vh;
       }

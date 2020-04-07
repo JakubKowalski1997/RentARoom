@@ -1,0 +1,55 @@
+.menu{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 75px;
+    width: 100%;
+}
+
+.menu .menuContent ul li {
+    display: inline-block;
+    margin-left: 50px;
+    margin-right: 50px;
+    color: #2d3235;
+    transition: opacity 0.3s ease 0.3s;
+    cursor: pointer;
+    position: relative;
+}
+
+.menuContent ul {
+    margin-bottom: 0px;
+}
+
+.menu .menuContent a {
+    color: #4b4b4b;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.menu .menuContent a:hover {
+    color: rgb(255, 255, 0);
+}
+
+.toggle{
+    color:white;
+    margin-right: 50px;
+    font-size: 20px;
+}
+
+.toggle:hover{
+    color: rgb(255, 255, 0);
+    cursor: pointer;
+}
+
+.active{
+    color: rgb(255, 255, 0);
+}
+

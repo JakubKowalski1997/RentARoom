@@ -26,12 +26,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        final String[] pagesNeededToLogin = {"/remind-passwd/**"};
         http.cors().and().csrf().disable();
         http
                 .authorizeRequests()
-                .antMatchers("/resources/**", "/registration","/remind-passwd").permitAll()
-                .antMatchers("/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
+                .antMatchers(pagesNeededToLogin).authenticated()
+                .antMatchers("/**").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")

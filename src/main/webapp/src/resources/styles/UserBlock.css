@@ -1,0 +1,76 @@
+.userBlock {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  color: #151515;
+  font-size: 15px;
+  max-width: 300px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  transition: all 0.3s ease;
+  background-color: white;
+  z-index: 2;
+  padding-left: 10px;
+}
+
+.showBlock{
+  top: 70px;
+}
+
+h4{
+  align-self: center;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.userBlock span {
+  color: rgb(255, 255, 0);
+}
+
+.userButtons{
+  display: flex;
+}
+
+.userBlock button {
+  margin-right: 5px;
+  margin-bottom: 5px;
+  background: none;
+  border: none;
+  display: block;
+  font-family: "Varela", sans-serif;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+
+.userBlock button:hover {
+  border: none !important;
+  background: none !important;
+  color: rgb(255, 255, 0);
+  cursor: pointer;
+}
+
+.userBlock a {
+  margin-right: 5px;
+  margin-bottom: 5px;
+  background: none;
+  border: none;
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  color: rgb(75,75,75);
+  padding: 3px 10px 3px 0px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.userBlock a:hover {
+  border: none !important;
+  background: none !important;
+  color: rgb(255, 255, 0);
+  cursor: pointer;
+}
+
+.userBlock button:focus {
+  outline: none;
+}
