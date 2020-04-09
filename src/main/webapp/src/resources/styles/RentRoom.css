@@ -1,0 +1,165 @@
+.buttonsWrapper{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.rt-tr button{
+    background-color: inherit;
+    border: none;
+    font-size: 0.8rem;
+    white-space: normal;
+}
+
+.rt-tr input{
+    background-color: inherit !important;
+    border: none;
+    border-bottom: 2px solid #4b4b4b;
+    border-radius: 0px;
+    margin-bottom: 3px;
+}
+
+.rt-tr input:focus{
+    border-bottom: 2px solid rgb(255,77,0);
+}
+
+.rt-tr select{
+    background-color: inherit !important;
+    border: none;
+    border-bottom: 2px solid #4b4b4b;
+    border-radius: 0px;
+    margin-bottom: 3px;
+}
+
+.rt-tr select:focus select:active{
+    border-bottom: 2px solid rgb(255,77,0);
+}
+
+.rt-tr textarea{
+    background-color: inherit !important;
+    border: none;
+    border-bottom: 2px solid #4b4b4b;
+    border-radius: 0px;
+    max-width: 100%;
+    margin-bottom: 3px;
+}
+
+.rt-tr textarea:focus{
+    border-bottom: 2px solid rgb(255,77,0);
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+}
+
+.rt-tr-group ul{
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+.rt-th {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.rt-td {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #151515;
+    align-items: flex-end;
+}
+
+.rt-td div {
+    width: 100%;
+    background-color: transparent !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100%;
+    justify-content: space-between;
+    white-space: normal;
+    word-break: break-word;
+}
+
+.rt-td a {
+    color: #151515 !important;
+}
+
+.rt-td a:hover {
+    color: rgb(255,77,0) !important;
+}
+
+.rt-td a {
+    background-color: inherit !important;
+}
+
+.toggle.active{
+    color: rgb(255,77,0) !important;
+}
+
+.active {
+    color: #151515;
+}
+
+.nav-item.active{
+    color: rgb(255,77,0) !important;
+}
+
+.nav-item{
+    color: #151515 !important;
+}
+
+.exactRoom{
+    font-family: "Montserrat" !important;
+}
+
+.exactRoom .col{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.exactRoom input{
+    background-color: inherit !important;
+    border: none;
+    border-bottom: 2px solid #4b4b4b;
+    border-radius: 0px;
+    width: 200px;
+}
+
+.exactRoom input:focus{
+    border-bottom: 2px solid rgb(255,77,0);
+    box-shadow: none !important;
+}
+
+.exactRoom select{
+    background-color: inherit !important;
+    border: none;
+    border-bottom: 2px solid #4b4b4b;
+    border-radius: 0px;
+    min-width: 200px;
+}
+
+.exactRoom select:focus select:active{
+    border-bottom: 2px solid rgb(255,77,0);
+    box-shadow: none !important;
+}
+
+.exactRoom form{
+    display: block !important;
+    margin-top: 20px;
+}
+
+.exactRoom small{
+    margin: 0;
+}
+
+.exactRoom label{
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.ReactTable button{
+    margin: 0;
+}

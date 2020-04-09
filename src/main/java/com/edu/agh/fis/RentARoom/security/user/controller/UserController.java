@@ -11,12 +11,16 @@ import com.edu.agh.fis.RentARoom.security.user.utils.PasswordUtils;
 import com.edu.agh.fis.RentARoom.security.user.validator.UserValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -120,4 +124,16 @@ public class UserController {
         return new ChangePasswordResponse(true, "");
     }
 
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, String> loggedUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        return Collections.singletonMap("username", username);
+    }
 }
