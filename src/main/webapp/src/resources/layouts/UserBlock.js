@@ -1,7 +1,5 @@
 import React, {Component} from "react";
-import {NavLink} from "react-router-dom";
-import {Redirect} from 'react-router-dom'
-import {Route, Switch} from "react-router-dom";
+import {NavLink, Redirect, Route, Switch} from "react-router-dom";
 import "../styles/UserBlock.css";
 
 class UserBlock extends Component {
@@ -47,8 +45,6 @@ class UserBlock extends Component {
 
             });
     }
-
-
 
   render() {
     return (

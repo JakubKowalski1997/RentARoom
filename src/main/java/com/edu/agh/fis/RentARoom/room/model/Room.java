@@ -3,7 +3,6 @@ package com.edu.agh.fis.RentARoom.room.model;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 

@@ -3,6 +3,7 @@ package com.edu.agh.fis.RentARoom.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,16 +27,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        final String[] pagesNeededToLogin = {"/remind-passwd/**"};
+        final String[] pagesNeededToLogin = {"/rent-room"};
         http.cors().and().csrf().disable();
         http
                 .authorizeRequests()
-                .antMatchers(pagesNeededToLogin).authenticated()
+                .antMatchers(HttpMethod.POST, pagesNeededToLogin).authenticated()
                 .antMatchers("/**").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/",true)
+//                .successHandler(new RefererRedirectionAuthenticationSuccessHandler())
                 .permitAll()
                 .and()
                 .logout()

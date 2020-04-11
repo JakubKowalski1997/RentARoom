@@ -21,12 +21,20 @@ class RentRoomForm extends React.Component {
             city: '',
             zipcode: '',
             country: '',
+            username: ''
         };
+        fetch("/username")
+            .then(res => res.json())
+            .then((result) => {
+                this.setState({
+                    userName: result.username
+                });
 
+            });
+        console.log(this.state.userName)
     }
 
     handleSubmit = e => {
-        console.log(this.state.title);
         e.preventDefault();
         let room = {
             title: this.state.title,
@@ -40,13 +48,16 @@ class RentRoomForm extends React.Component {
             area: this.state.area,
             description: this.state.description
         };
-
-
         fetch('/rent-room', {
-            method: 'post',
+            method: 'POST',
             body: JSON.stringify(room),
             headers: {'Content-Type': 'application/json'}
-        }).then((response) => response.json())
+        }).then((response) => {
+            console.log(response);
+            if (response.url.indexOf("login") !== -1) {
+                this.redirectToLogin();
+            }
+        });
         this.state = {
             title: '',
             address: '',
@@ -58,72 +69,89 @@ class RentRoomForm extends React.Component {
 
     };
 
+    redirectToLogin() {
+        window.location.replace("http://localhost:8001/login");
+    }
+
     handleChange = e => {
         this.setState({[e.target.name]: e.target.value});
     };
 
+
     render() {
         return (
-            <div className="row h-100 justify-content-center align-items-center">
-                <Form style={{width: '50%', display: 'flex', justifyContent: 'center', flexDirection: 'row',}}
-                      onSubmit={e => this.handleSubmit(e)}>
-                    <Form.Group controlId="formGridName">
-                        <Form.Label>Title</Form.Label>
-                        <Form.Control type="text" name="title" value={this.state.title} onChange={this.handleChange}/>
-                    </Form.Group>
-                    <Row>
-                        <Col>
-                            <Form.Group controlId="formGridName">
-                                <Form.Label>street</Form.Label>
-                                <Form.Control type="text" name="street" value={this.state.street}
-                                              onChange={this.handleChange}/>
-                            </Form.Group>
-                        </Col>
-
-                        <Col>
-                            <Form.Group controlId="formGridName">
-                                <Form.Label>city</Form.Label>
-                                <Form.Control type="text" name="city" value={this.state.city}
-                                              onChange={this.handleChange}/>
-                            </Form.Group>
-                        </Col>
-
-                        <Col>
-                            <Form.Group controlId="formGridName">
-                                <Form.Label>zipcode</Form.Label>
-                                <Form.Control type="text" name="zipcode" value={this.state.zipcode}
-                                              onChange={this.handleChange}/>
-                            </Form.Group>
-                        </Col>
-
-                        <Col>
-                            <Form.Group controlId="formGridName">
-                                <Form.Label>country</Form.Label>
-                                <Form.Control type="text" name="country" value={this.state.country}
-                                              onChange={this.handleChange}/>
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                    <Form.Group controlId="formGridName">
-                        <Form.Label>Price</Form.Label>
-                        <Form.Control type="number" name="price" value={this.state.price} onChange={this.handleChange}/>
-                    </Form.Group>
-                    <Form.Group controlId="formGridName">
-                        <Form.Label>Area</Form.Label>
-                        <Form.Control type="number" name="area" value={this.state.area} onChange={this.handleChange}/>
-                    </Form.Group>
-                    <Form.Group controlId="formGridName">
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control as="textarea" rows="3" type="text" name="description"
-                                      value={this.state.description}
-                                      onChange={this.handleChange}/>
-                    </Form.Group>
-                    <Button variant="primary" type="submit"> Submit </Button>
-                </Form>
+            <div>
+                {
+                    this.state.userName !== "anonymousUser"
+                        ? this.getRentRoomForm()
+                        : <div className="row h-100 justify-content-center align-items-center">
+                            <Button onClick={this.redirectToLogin}>LOGIN</Button>
+                        </div>
+                }
             </div>
+
         )
     }
 
+    getRentRoomForm() {
+        return <div className="row h-100 justify-content-center align-items-center">
+            <Form style={{width: '50%', display: 'flex', justifyContent: 'center', flexDirection: 'row',}}
+                  onSubmit={e => this.handleSubmit(e)}>
+                <Form.Group controlId="formGridName">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control type="text" name="title" value={this.state.title} onChange={this.handleChange}/>
+                </Form.Group>
+                <Row>
+                    <Col>
+                        <Form.Group controlId="formGridName">
+                            <Form.Label>street</Form.Label>
+                            <Form.Control type="text" name="street" value={this.state.street}
+                                          onChange={this.handleChange}/>
+                        </Form.Group>
+                    </Col>
+
+                    <Col>
+                        <Form.Group controlId="formGridName">
+                            <Form.Label>city</Form.Label>
+                            <Form.Control type="text" name="city" value={this.state.city}
+                                          onChange={this.handleChange}/>
+                        </Form.Group>
+                    </Col>
+
+                    <Col>
+                        <Form.Group controlId="formGridName">
+                            <Form.Label>zipcode</Form.Label>
+                            <Form.Control type="text" name="zipcode" value={this.state.zipcode}
+                                          onChange={this.handleChange}/>
+                        </Form.Group>
+                    </Col>
+
+                    <Col>
+                        <Form.Group controlId="formGridName">
+                            <Form.Label>country</Form.Label>
+                            <Form.Control type="text" name="country" value={this.state.country}
+                                          onChange={this.handleChange}/>
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Form.Group controlId="formGridName">
+                    <Form.Label>Price</Form.Label>
+                    <Form.Control type="number" name="price" value={this.state.price} onChange={this.handleChange}/>
+                </Form.Group>
+                <Form.Group controlId="formGridName">
+                    <Form.Label>Area</Form.Label>
+                    <Form.Control type="number" name="area" value={this.state.area} onChange={this.handleChange}/>
+                </Form.Group>
+                <Form.Group controlId="formGridName">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control as="textarea" rows="3" type="text" name="description"
+                                  value={this.state.description}
+                                  onChange={this.handleChange}/>
+                </Form.Group>
+                <Button variant="primary" type="submit"> Submit </Button>
+            </Form>
+        </div>;
+    }
 }
 
 export default RentRoomForm;
