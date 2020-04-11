@@ -35,10 +35,10 @@ class FindRoom extends React.Component {
                 Header: "title",
                 accessor: "title"
             },
-            {
-                Header: "address",
-                accessor: "address"
-            },
+            // {
+            //     Header: "address",
+            //     accessor: "address"
+            // },
             {
                 Header: "price",
                 accessor: "price"

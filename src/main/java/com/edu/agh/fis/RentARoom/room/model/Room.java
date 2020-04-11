@@ -3,6 +3,7 @@ package com.edu.agh.fis.RentARoom.room.model;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -16,7 +17,8 @@ public class Room {
 
     private String title;
 
-    private String address;
+    @Embedded
+    private Address address;
 
     private BigDecimal price;
 
@@ -75,11 +77,11 @@ public class Room {
         this.title = title;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 }

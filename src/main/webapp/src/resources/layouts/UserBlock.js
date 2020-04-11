@@ -1,25 +1,26 @@
-import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
-import { Redirect } from 'react-router-dom'
-import { Route, Switch } from "react-router-dom";
+import React, {Component} from "react";
+import {NavLink} from "react-router-dom";
+import {Redirect} from 'react-router-dom'
+import {Route, Switch} from "react-router-dom";
 import "../styles/UserBlock.css";
 
 class UserBlock extends Component {
-  // state = {
-  //   userName: "Admin",
-  //   redirect: false
-  // };
+    // state = {
+    //   userName: "Admin",
+    //   redirect: false
+    // };
 
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    })
-  };
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to='/privacy-policy' />
-    }
-  };
+    setRedirect = () => {
+        this.setState({
+            redirect: true
+        })
+    };
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to='/privacy-policy'/>
+        }
+    };
+
     constructor(props) {
         super(props);
         // fetch("/username")
@@ -31,9 +32,10 @@ class UserBlock extends Component {
         //     .then(data => { this.setState({ userName: data}); })
         //     .catch(error => console.log("Following error occurred: " + error));
         this.state = {
-            redirect: false
+            redirect: false,
         }
     }
+
     componentDidMount() {
         const that = this;
         fetch("/username")
