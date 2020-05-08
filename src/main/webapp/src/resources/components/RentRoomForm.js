@@ -21,7 +21,7 @@ class RentRoomForm extends React.Component {
             city: '',
             zipcode: '',
             country: '',
-            username: ''
+            userName: ''
         };
         fetch("/username")
             .then(res => res.json())
@@ -70,7 +70,7 @@ class RentRoomForm extends React.Component {
     };
 
     redirectToLogin() {
-        window.location.replace("http://localhost:8001/login");
+        window.location.replace("/login");
     }
 
     handleChange = e => {
@@ -94,7 +94,8 @@ class RentRoomForm extends React.Component {
     }
 
     getRentRoomForm() {
-        return <div className="row h-100 justify-content-center align-items-center">
+        return (
+            <div className="row h-100 justify-content-center align-items-center">
             <Form style={{width: '50%', display: 'flex', justifyContent: 'center', flexDirection: 'row',}}
                   onSubmit={e => this.handleSubmit(e)}>
                 <Form.Group controlId="formGridName">
@@ -150,7 +151,8 @@ class RentRoomForm extends React.Component {
                 </Form.Group>
                 <Button variant="primary" type="submit"> Submit </Button>
             </Form>
-        </div>;
+        </div>
+        )
     }
 }
 

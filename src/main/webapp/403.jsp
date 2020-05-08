@@ -12,7 +12,7 @@
       rel="stylesheet"
     />
     <link rel="shortcut icon" href="../resources/images/rentaroom.jpg" />
-    <title>DNSite</title>
+    <title>RentARoom</title>
     <style>
       * {
         margin: 0;

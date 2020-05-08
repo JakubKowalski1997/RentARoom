@@ -31,8 +31,8 @@ class Navigation extends Component {
             });
     }
 
-    redirectToLogin() {
-        window.location.replace("http://localhost:8001/login");
+    static redirectToLogin() {
+        window.location.replace("/login");
     }
 
     state = {
@@ -78,7 +78,7 @@ class Navigation extends Component {
                         ? <span className="toggle" onClick={this.userPanelShow}>
                                      <i className="fas fa-user"></i>
                         </span>
-                        : <div className="userBlock"><Button onClick={this.redirectToLogin}>LOGIN</Button></div>
+                        : <div className="userBlock"><Button onClick={Navigation.redirectToLogin}>LOGIN</Button></div>
                 }
 
 

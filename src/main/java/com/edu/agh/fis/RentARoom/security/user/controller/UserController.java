@@ -69,23 +69,9 @@ public class UserController {
             return "registration";
         }
 
-        List<User> admins = userService.findByRole(Role.ADMIN.getAuthority());
-        if (admins.size() == 0) {
-            userForm.setRole(Role.ADMIN.getAuthority());
-            userService.save(userForm);
-            log.info("First user of database saved");
-        } else {
-            log.info("Another user want to join system");
-
-            for (User admin : admins) {
-                emailService.sendConfirmMessage(admin.getEmail(), userForm.getUsername(), userForm.getEmail());
-            }
-            userForm.setRole(Role.USER.getAuthority());
-            userService.save(userForm);
-            log.info("Email was send to verification");
-
-            return "redirect:/login";
-        }
+        userForm.setRole(Role.ADMIN.getAuthority());
+        userService.save(userForm);
+        log.info("First user of database saved");
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
@@ -130,7 +116,7 @@ public class UserController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
         if (principal instanceof UserDetails) {
-            username = ((UserDetails)principal).getUsername();
+            username = ((UserDetails) principal).getUsername();
         } else {
             username = principal.toString();
         }

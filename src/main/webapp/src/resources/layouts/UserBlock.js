@@ -31,7 +31,15 @@ class UserBlock extends Component {
         //     .catch(error => console.log("Following error occurred: " + error));
         this.state = {
             redirect: false,
-        }
+        };
+        fetch("/username")
+            .then(res => res.json())
+            .then((result) => {
+                this.setState({
+                    userName: result.username
+                });
+
+            });
     }
 
     componentDidMount() {
@@ -48,20 +56,26 @@ class UserBlock extends Component {
 
   render() {
     return (
-      <div className="userBlock">
-        <h3>
-          Welcome <span>{this.state.userName}</span>!
-        </h3>
-        <div className="userButtons">
-          <NavLink to="/changePassword">Change password</NavLink>|
-          {this.renderRedirect()}
-          <button onClick={this.setRedirect}>Logout</button>
-          <Route path = '/privacy-policy' component={() => {
-            window.location.href = "/logout";
-            return null;
-          }}/>
+        <div>
+            {
+                this.state.userName !== "anonymousUser"
+                    ?<div className="userBlock">
+                        <h3>
+                            <span> Welcome {this.state.userName}</span>!
+                        </h3>
+                        <div className="userButtons">
+                            <NavLink to="/changePassword">Change password</NavLink>|
+                            {this.renderRedirect()}
+                            <button onClick={this.setRedirect}>Logout</button>
+                            <Route path = '/privacy-policy' component={() => {
+                                window.location.href = "/logout";
+                                return null;
+                            }}/>
+                        </div>
+                    </div>
+                    : <div/>
+            }
         </div>
-      </div>
     );
   }
 }
