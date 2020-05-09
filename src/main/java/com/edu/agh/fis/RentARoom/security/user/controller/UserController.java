@@ -88,7 +88,7 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/403"}, method = RequestMethod.GET)
-    public String accessDeny(Model model) {
+    public String accessDeny() {
         return "403";
     }
 

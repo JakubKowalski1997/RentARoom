@@ -1,7 +1,7 @@
 body{
     background-image: url("../images/background.png");
     color: white;
-    font-family: Varela;
+    font-family: Montserrat;
 }
 
 .LoginForm{
@@ -77,6 +77,23 @@ body{
 }
 
 .login-options a:hover{
+    color: white;
+}
+
+.home{
+    display: flex;
+    flex-direction: row;
+    color: #8b8b8b;
+    justify-content: center;
+}
+
+.home a{
+    color: #8b8b8b;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.home a:hover{
     color: white;
 }
 

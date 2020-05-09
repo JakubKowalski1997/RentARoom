@@ -22,7 +22,7 @@
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
     <link href="${contextPath}/resources/styles/Registration.css" rel="stylesheet">
     <link
-            href="https://fonts.googleapis.com/css?family=Varela:400,600,700,900|Varela"
+            href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,900|Montserrat"
             rel="stylesheet"
     />
 

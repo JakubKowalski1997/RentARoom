@@ -21,7 +21,7 @@
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
     <link href="${contextPath}/resources/styles/LogInPage.css" rel="stylesheet">
     <link
-            href="https://fonts.googleapis.com/css?family=Varela:400,600,700,900|Varela"
+            href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,900|Montserrat"
             rel="stylesheet"
     />
     <link rel="stylesheet"
@@ -62,6 +62,9 @@
                 <h4 class="text-center"><a href="${contextPath}/registration">Create an account</a></h4>
                 <h4 class="text-center">|</h4>
                 <h4 class="text-center"><a href="${contextPath}/remind-passwd">Remind password</a></h4>
+            </div>
+            <div class="home">
+                <h4 class="text-center"><a href="${contextPath}/">Home</a></h4>
             </div>
 
         </div>
