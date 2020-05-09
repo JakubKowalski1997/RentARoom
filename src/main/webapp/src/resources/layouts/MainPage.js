@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import {Route, Switch} from "react-router-dom";
 import RentRoom from "../pages/RentRoom";
 import FindRoom from "../pages/FindRoom";
-import Chart from "../pages/Chart";
+import Statistics from "../pages/Statistics";
 
 
 const MainPage = () => {
@@ -12,7 +12,7 @@ const MainPage = () => {
       <Switch>
         <Route path="/find-room" component={FindRoom} />
         <Route path="/rent-room" component={RentRoom} />
-        <Route path="/statistics" component={Chart} />
+        <Route path="/statistics" component={Statistics} />
       </Switch>
     </>
   );

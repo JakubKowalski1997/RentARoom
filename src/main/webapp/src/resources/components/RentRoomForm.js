@@ -48,7 +48,7 @@ class RentRoomForm extends React.Component {
             area: this.state.area,
             description: this.state.description
         };
-        fetch('/rent-room', {
+        fetch('/room/rent-room', {
             method: 'POST',
             body: JSON.stringify(room),
             headers: {'Content-Type': 'application/json'}
