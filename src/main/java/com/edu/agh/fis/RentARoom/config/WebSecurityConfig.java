@@ -36,20 +36,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/",true)
-//                .successHandler(new RefererRedirectionAuthenticationSuccessHandler())
+                .defaultSuccessUrl("/", true)
                 .permitAll()
                 .and()
                 .logout()
+                .logoutSuccessUrl("/")
                 .permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/403");
-
-
-        // TODO disable on production
-//        http.authorizeRequests()
-//                .antMatchers("/").permitAll()
-//                .antMatchers("/h2/**").permitAll();
 
         http.headers().frameOptions().disable();
     }

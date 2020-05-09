@@ -18,13 +18,14 @@ public class RoomController {
     private RoomService roomService;
 
     @RequestMapping(value = "/rent-room", method = RequestMethod.POST)
-    public void addRoom(@RequestBody Room room) {
+    public String addRoom(@RequestBody Room room) {
 //        Room room = new Room();
 //        room.setAddress(roomDTO.getAddress());
 //        room.setArea(Double.parseDouble(roomDTO.getArea()));
 //        room.setDescription(roomDTO.getDescription());
 //        room.setPrice(new BigDecimal(roomDTO.getPrice()));
         roomService.save(room);
+        return "redirect:/";
     }
 
     @ResponseBody

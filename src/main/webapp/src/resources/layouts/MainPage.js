@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from 'react-dom'
-import { Route, Switch } from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import RentRoom from "../pages/RentRoom";
 import FindRoom from "../pages/FindRoom";
 import Chart from "../pages/Chart";
@@ -18,6 +18,6 @@ const MainPage = () => {
   );
 };
 
-ReactDOM.render(MainPage, document.getElementById('root'))
+ReactDOM.render(MainPage, document.getElementById('root'));
 
 export default MainPage;

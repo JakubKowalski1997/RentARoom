@@ -19,7 +19,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -51,7 +50,7 @@ public class UserController {
         String tempPassword = userService.setUserPassword(userForm.getUsername(), null);
         emailService.sendTempPasswdMessage(userService.findByUsername(userForm.getUsername()).getEmail(), userForm.getUsername(), tempPassword);
 
-        return "redirect:/dnsite";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)

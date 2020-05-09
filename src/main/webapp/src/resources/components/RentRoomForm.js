@@ -56,6 +56,8 @@ class RentRoomForm extends React.Component {
             console.log(response);
             if (response.url.indexOf("login") !== -1) {
                 this.redirectToLogin();
+            } else {
+                this.redirectToHome();
             }
         });
         this.state = {
@@ -71,6 +73,11 @@ class RentRoomForm extends React.Component {
 
     redirectToLogin() {
         window.location.replace("/login");
+    }
+
+    redirectToHome() {
+        window.location.replace("/");
+
     }
 
     handleChange = e => {

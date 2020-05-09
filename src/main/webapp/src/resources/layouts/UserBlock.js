@@ -53,6 +53,9 @@ class UserBlock extends Component {
 
             });
     }
+    redirectToChangePassword() {
+        window.location.replace("/login");
+    }
 
   render() {
     return (
@@ -64,9 +67,9 @@ class UserBlock extends Component {
                             <span> Welcome {this.state.userName}</span>!
                         </h3>
                         <div className="userButtons">
-                            <NavLink to="/changePassword">Change password</NavLink>|
+                            <NavLink to="/settings">Settings</NavLink>|
                             {this.renderRedirect()}
-                            <button onClick={this.setRedirect}>Logout</button>
+                            <button onClick={this.setRedirect}> Logout</button>
                             <Route path = '/privacy-policy' component={() => {
                                 window.location.href = "/logout";
                                 return null;
