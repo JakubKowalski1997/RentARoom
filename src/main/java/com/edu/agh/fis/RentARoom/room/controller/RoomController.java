@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,10 +40,12 @@ public class RoomController {
         List<Room> allRooms = roomService.findAll();
         List<BigDecimal> priceList = allRooms
                 .stream()
+                .sorted(Comparator.comparing(Room::getArea))
                 .map(Room::getPrice)
                 .collect(Collectors.toList());
         List<Double> areaList = allRooms
                 .stream()
+                .sorted(Comparator.comparing(Room::getArea))
                 .map(Room::getArea)
                 .collect(Collectors.toList());
 

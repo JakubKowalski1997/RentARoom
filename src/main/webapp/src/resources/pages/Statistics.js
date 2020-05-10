@@ -12,7 +12,6 @@ class Statistics extends React.Component {
             areaList: ['areaList'],
         };
 
-        this.changeData = this.changeData.bind(this);
     }
 
     refreshTable() {
@@ -40,21 +39,23 @@ class Statistics extends React.Component {
         c3.generate({
             bindto: "#chart1",
             data: {
-                xs: {
-                    priceList: 'areaList',
-                },
+                x: 'areaList',
                 columns: [this.state.areaList, this.state.priceList],
-                type: 'scatter'
             },
+            axis: {
+                x: {
+                    label: 'Area'
+                },
+                y: {
+                    label: 'Price'
+                },
+            }
 
         });
     }
 
     componentDidMount() {
         this.refreshTable();
-        console.log(this.state.priceList);
-        console.log(this.state.areaList);
-        // this.renderChart();
     }
 
     componentDidUpdate() {
