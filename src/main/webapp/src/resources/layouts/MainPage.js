@@ -5,6 +5,7 @@ import RentRoom from "../pages/RentRoom";
 import FindRoom from "../pages/FindRoom";
 import Statistics from "../pages/Statistics";
 import Error404 from "../pages/Error404";
+import Room from "../pages/Room";
 
 
 const MainPage = () => {
@@ -15,6 +16,7 @@ const MainPage = () => {
                 <Route path="/find-room" component={FindRoom}/>
                 <Route path="/rent-room" component={RentRoom}/>
                 <Route path="/statistics" component={Statistics}/>
+                <Route path="/room/:id" exact component={Room}/>
                 <Route component={Error404}/>
             </Switch>
         </>

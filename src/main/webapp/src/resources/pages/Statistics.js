@@ -1,6 +1,7 @@
 import c3 from 'c3';
 import React from "react";
 import "../../../node_modules/c3/c3.css";
+import {useParams} from "react-router-dom";
 
 class Statistics extends React.Component {
     constructor(props) {

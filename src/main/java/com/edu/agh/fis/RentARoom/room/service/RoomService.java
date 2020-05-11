@@ -8,4 +8,6 @@ public interface RoomService {
     void save(Room room);
 
     List<Room> findAll();
+
+    Room find(Long id);
 }

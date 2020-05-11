@@ -63,6 +63,13 @@ class FindRoom extends React.Component {
                 data={this.state.data}
                 columns={columns}
                 defaultSorted={[{ id: "id", desc: true }]}
+                getTrProps={(state, rowInfo) => ({
+                    onClick: () => {
+                        console.log(rowInfo);
+                        var url =  "/#/room/" + rowInfo.original.id;
+                        window.location.replace(url);
+                    }
+                })}
             />
         );
     };

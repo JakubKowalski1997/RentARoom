@@ -5,10 +5,7 @@ import com.edu.agh.fis.RentARoom.room.model.Room;
 import com.edu.agh.fis.RentARoom.room.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.Comparator;
@@ -22,7 +19,7 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
 
-    @RequestMapping(value = "/rent-room", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public String addRoom(@RequestBody Room room) {
         roomService.save(room);
         return "redirect:/";
@@ -32,6 +29,12 @@ public class RoomController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Room> getAllRooms() {
         return roomService.findAll();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Room getRoom(@PathVariable("id") Long id) {
+        return roomService.find(id);
     }
 
     @ResponseBody

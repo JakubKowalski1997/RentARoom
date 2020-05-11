@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        final String[] pagesNeededToLogin = {"/rent-room"};
+        final String[] pagesNeededToLogin = {"/room"};
         http.cors().and().csrf().disable();
         http
                 .authorizeRequests()
