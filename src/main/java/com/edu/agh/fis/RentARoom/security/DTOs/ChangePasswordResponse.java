@@ -1,8 +1,8 @@
 package com.edu.agh.fis.RentARoom.security.DTOs;
 
 public class ChangePasswordResponse {
-    public boolean changed;
-    public String errorMessage;
+    private boolean changed;
+    private String errorMessage;
 
     public ChangePasswordResponse(){}
 

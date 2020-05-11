@@ -63,12 +63,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String setUserPassword(String username, String password) {
+    public String setUserPassword(String username) {
         User user = findByUsername(username);
 
-        if (password == null) {
-            password = PasswordUtils.generateTemporaryPassword();
-        }
+        String password = PasswordUtils.generateTemporaryPassword();
 
         user.setPassword(bCryptPasswordEncoder.encode(password));
         user.setRegistrationDate(new Date());

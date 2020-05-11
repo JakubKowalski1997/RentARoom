@@ -14,11 +14,6 @@ public final class PasswordGenerator {
     private boolean useUpper;
     private boolean useDigits;
 
-
-    private PasswordGenerator() {
-        throw new UnsupportedOperationException("Empty constructor is not supported.");
-    }
-
     private PasswordGenerator(PasswordGeneratorBuilder builder) {
         passwordUtils = new PasswordUtils();
         this.useLower = builder.useLower;

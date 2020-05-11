@@ -20,6 +20,6 @@ public interface UserService {
 
     void deleteUserById(Long id);
 
-    String setUserPassword(String username, String password);
+    String setUserPassword(String username);
 
 }

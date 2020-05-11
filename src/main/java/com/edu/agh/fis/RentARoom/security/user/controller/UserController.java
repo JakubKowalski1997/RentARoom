@@ -1,13 +1,10 @@
 package com.edu.agh.fis.RentARoom.security.user.controller;
 
-import com.edu.agh.fis.RentARoom.security.DTOs.ChangePasswordRequest;
-import com.edu.agh.fis.RentARoom.security.DTOs.ChangePasswordResponse;
 import com.edu.agh.fis.RentARoom.security.service.SecurityService;
 import com.edu.agh.fis.RentARoom.security.user.model.Role;
 import com.edu.agh.fis.RentARoom.security.user.model.User;
 import com.edu.agh.fis.RentARoom.security.user.service.EmailService;
 import com.edu.agh.fis.RentARoom.security.user.service.UserService;
-import com.edu.agh.fis.RentARoom.security.user.utils.PasswordUtils;
 import com.edu.agh.fis.RentARoom.security.user.validator.UserValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +13,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Collections;
 import java.util.Map;
@@ -45,11 +45,13 @@ public class UserController {
     }
 
     @RequestMapping(value = "/remind-passwd", method = RequestMethod.POST)
-    public String remindPasswd(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+    public String remindPasswd(@ModelAttribute("userForm") User userForm) {
 
-        String tempPassword = userService.setUserPassword(userForm.getUsername(), null);
-        emailService.sendTempPasswdMessage(userService.findByUsername(userForm.getUsername()).getEmail(), userForm.getUsername(), tempPassword);
-
+        String username = userForm.getUsername();
+        String tempPassword = userService.setUserPassword(username);
+        String email = userService.findByUsername(username).getEmail();
+        emailService.sendTempPasswdMessage(email, username, tempPassword);
+        log.info("Remind password email was sent");
         return "redirect:/";
     }
 
@@ -60,7 +62,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
 
         userValidator.validate(userForm, bindingResult);
 
@@ -90,23 +92,6 @@ public class UserController {
     @RequestMapping(value = {"/403"}, method = RequestMethod.GET)
     public String accessDeny() {
         return "403";
-    }
-
-    @RequestMapping(value = "/changePasswd", method = RequestMethod.POST)
-    @ResponseBody
-    public ChangePasswordResponse changePassword(@RequestBody ChangePasswordRequest password) {
-
-        PasswordUtils passwordUtils = new PasswordUtils();
-        User user = userService.findByUsername(securityService.findLoggedInUsername());
-        String message = passwordUtils.checkNewPassword(password, user);
-        if (message.equals("Valid")) {
-            userService.setUserPassword(user.getUsername(), password.newPassword);
-            log.info("Password of user " + user.getUsername() + " has been changed");
-        } else {
-            log.info("error during changing password: " + message);
-            return new ChangePasswordResponse(false, message);
-        }
-        return new ChangePasswordResponse(true, "");
     }
 
     @RequestMapping(value = "/username", method = RequestMethod.GET)
