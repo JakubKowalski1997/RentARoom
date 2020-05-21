@@ -1,10 +1,13 @@
 package com.edu.agh.fis.RentARoom.security.user.controller;
 
 import com.edu.agh.fis.RentARoom.security.service.SecurityService;
+import com.edu.agh.fis.RentARoom.security.user.DTOs.ChangePasswordRequest;
+import com.edu.agh.fis.RentARoom.security.user.DTOs.ChangePasswordResponse;
 import com.edu.agh.fis.RentARoom.security.user.model.Role;
 import com.edu.agh.fis.RentARoom.security.user.model.User;
 import com.edu.agh.fis.RentARoom.security.user.service.EmailService;
 import com.edu.agh.fis.RentARoom.security.user.service.UserService;
+import com.edu.agh.fis.RentARoom.security.user.utils.PasswordUtils;
 import com.edu.agh.fis.RentARoom.security.user.validator.UserValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.Map;
@@ -48,7 +48,7 @@ public class UserController {
     public String remindPasswd(@ModelAttribute("userForm") User userForm) {
 
         String username = userForm.getUsername();
-        String tempPassword = userService.setUserPassword(username);
+        String tempPassword = userService.setUserRandomPassword(username);
         String email = userService.findByUsername(username).getEmail();
         emailService.sendTempPasswdMessage(email, username, tempPassword);
         log.info("Remind password email was sent");
@@ -97,6 +97,24 @@ public class UserController {
     @RequestMapping(value = "/username", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, String> loggedUser() {
+        String username = getLoggedUsername();
+        return Collections.singletonMap("username", username);
+    }
+
+    @RequestMapping(value = "/change-passwd", method = RequestMethod.POST)
+    @ResponseBody
+    public ChangePasswordResponse changePasswd(@RequestBody ChangePasswordRequest password) {
+        PasswordUtils passwordUtils = new PasswordUtils();
+        String username = getLoggedUsername();
+        User user = userService.findByUsername(username);
+        ChangePasswordResponse changePasswordResponse = passwordUtils.checkNewPassword(password, user);
+        if (changePasswordResponse.isProper()) {
+            userService.updateUserPassword(user, password.getNewPassword());
+        }
+        return changePasswordResponse;
+    }
+
+    private String getLoggedUsername() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
         if (principal instanceof UserDetails) {
@@ -104,6 +122,6 @@ public class UserController {
         } else {
             username = principal.toString();
         }
-        return Collections.singletonMap("username", username);
+        return username;
     }
 }

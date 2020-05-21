@@ -27,11 +27,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        final String[] pagesNeededToLogin = {"/room"};
+        final String[] requestsWithRequiredAuthentication = {"/room", "change-passwd"};
         http.cors().and().csrf().disable();
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, pagesNeededToLogin).authenticated()
+                .antMatchers(HttpMethod.POST, requestsWithRequiredAuthentication).authenticated()
                 .antMatchers("/**").permitAll()
                 .and()
                 .formLogin()

@@ -20,16 +20,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-//    @Autowired
-//    private HistoryService historyService;
-
     @Override
     public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setPasswordConfirm(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRegistrationDate(new Date());
         user.setLastLoginDate(new Date());
         userRepository.save(user);
-//        historyService.save("USER", "INSERT");
     }
 
     @Override
@@ -37,14 +34,19 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.getOne(id);
         user.setRole(role.getAuthority());
         userRepository.save(user);
-//        historyService.save("USER", "UPDATE");
+    }
+
+    @Override
+    public void updateUserPassword(User user, String password) {
+        user.setPassword(bCryptPasswordEncoder.encode(password));
+        user.setPasswordConfirm(bCryptPasswordEncoder.encode(password));
+        userRepository.save(user);
     }
 
     @Override
     public void deleteUserById(Long id) {
         User user = userRepository.getOne(id);
         userRepository.delete(user);
-//        historyService.save("USER", "DELETE");
     }
 
     @Override
@@ -63,7 +65,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String setUserPassword(String username) {
+    public String setUserRandomPassword(String username) {
         User user = findByUsername(username);
 
         String password = PasswordUtils.generateTemporaryPassword();

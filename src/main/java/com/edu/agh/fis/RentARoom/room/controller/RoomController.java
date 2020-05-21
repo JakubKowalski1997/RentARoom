@@ -3,7 +3,10 @@ package com.edu.agh.fis.RentARoom.room.controller;
 import com.edu.agh.fis.RentARoom.room.DTOs.AreaToPriceStatisticDTO;
 import com.edu.agh.fis.RentARoom.room.model.Room;
 import com.edu.agh.fis.RentARoom.room.service.RoomService;
+import com.edu.agh.fis.RentARoom.security.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +22,20 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String addRoom(@RequestBody Room room) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        room.setUser(userRepository.findByUsername(username));
         roomService.save(room);
         return "redirect:/";
     }

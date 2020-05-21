@@ -1,0 +1,13 @@
+body {
+    padding-top: 40px;
+}
+
+.changed {
+    color:green;
+    font-weight:bold
+}
+
+.notChanged {
+    color:red;
+    font-weight:bold
+}

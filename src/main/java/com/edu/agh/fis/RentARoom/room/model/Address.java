@@ -1,6 +1,6 @@
 package com.edu.agh.fis.RentARoom.room.model;
 
-import javax.persistence.*;
+import javax.persistence.Embeddable;
 
 @Embeddable
 public class Address {
@@ -11,13 +11,23 @@ public class Address {
 
     private String street;
 
+    private int houseNumber;
+
     private String city;
 
     private String zipcode;
 
     private String country;
 
-//    @OneToMany( mappedBy = "address", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    public int getHouseNumber() {
+        return houseNumber;
+    }
+
+    public void setHouseNumber(int houseNumber) {
+        this.houseNumber = houseNumber;
+    }
+
+    //    @OneToMany( mappedBy = "address", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    @OnDelete(action = OnDeleteAction.CASCADE)
 //    private Set<Room> rooms;
 
@@ -69,12 +79,14 @@ public class Address {
 //        this.rooms = rooms;
 //    }
 
+
     @Override
     public String toString() {
-        return "{" +
+        return "Address{" +
                 "street='" + street + '\'' +
+                ", houseNumber=" + houseNumber +
                 ", city='" + city + '\'' +
-                ", zipcode=" + zipcode +
+                ", zipcode='" + zipcode + '\'' +
                 ", country='" + country + '\'' +
                 '}';
     }

@@ -7,6 +7,7 @@ import Statistics from "../pages/Statistics";
 import Error404 from "../pages/Error404";
 import Room from "../pages/Room";
 import RoomMap from "../pages/RoomMap";
+import Settings from "../pages/Settings";
 
 
 const MainPage = () => {
@@ -19,6 +20,7 @@ const MainPage = () => {
                 <Route path="/map" component={RoomMap}/>
                 <Route path="/statistics" component={Statistics}/>
                 <Route path="/room/:id" exact component={Room}/>
+                <Route path="/settings" exact component={Settings}/>
                 <Route component={Error404}/>
             </Switch>
         </>

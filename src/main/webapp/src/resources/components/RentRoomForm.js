@@ -18,6 +18,7 @@ class RentRoomForm extends React.Component {
             area: '',
             description: '',
             street: '',
+            houseNumber: '',
             city: '',
             zipcode: '',
             country: '',
@@ -40,6 +41,7 @@ class RentRoomForm extends React.Component {
             title: this.state.title,
             address: {
                 street: this.state.street,
+                houseNumber: this.state.houseNumber,
                 city: this.state.city,
                 zipcode: this.state.zipcode,
                 country: this.state.country,
@@ -89,7 +91,7 @@ class RentRoomForm extends React.Component {
         return (
             <div>
                 {
-                    this.state.userName !== "anonymousUser"
+                    this.state.userName !== "anonymousUser" && this.state.userName !== ''
                         ? this.getRentRoomForm()
                         : <div className="row h-100 justify-content-center align-items-center">
                             <Button onClick={this.redirectToLogin}>LOGIN</Button>
@@ -114,6 +116,14 @@ class RentRoomForm extends React.Component {
                         <Form.Group controlId="formGridName">
                             <Form.Label>street</Form.Label>
                             <Form.Control type="text" name="street" value={this.state.street}
+                                          onChange={this.handleChange}/>
+                        </Form.Group>
+                    </Col>
+
+                    <Col>
+                        <Form.Group controlId="formGridName">
+                            <Form.Label>House number</Form.Label>
+                            <Form.Control type="number" name="houseNumber" value={this.state.houseNumber}
                                           onChange={this.handleChange}/>
                         </Form.Group>
                     </Col>

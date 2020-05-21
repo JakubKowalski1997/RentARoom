@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { HashRouter as Router } from "react-router-dom";
+import React, {Component} from "react";
+import {HashRouter as Router} from "react-router-dom";
 import "../styles/App.css";
 import Header from "./Header";
 import Navigation from "./Navigation";
 import UserBlock from "./UserBlock";
 import MainPage from "./MainPage";
-// import Footer from "./Footer";
+import Footer from "./Footer";
 
 class App extends Component {
   render() {
@@ -20,6 +20,7 @@ class App extends Component {
                 <main>
                     <article>{<MainPage />}</article>
                 </main>
+                <footer>{<Footer />}</footer>
             </div>
         </Router>
     );

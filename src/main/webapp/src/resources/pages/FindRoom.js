@@ -2,6 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import "../styles/FindRoom.css";
 
 class FindRoom extends React.Component {
     constructor(props) {
@@ -27,10 +28,10 @@ class FindRoom extends React.Component {
 
     renderTable = () => {
         const columns = [
-            {
-                Header: "Id",
-                accessor: "id"
-            },
+            // {
+            //     Header: "Id",
+            //     accessor: "id"
+            // },
             {
                 Header: "title",
                 accessor: "title"
@@ -48,13 +49,25 @@ class FindRoom extends React.Component {
                 accessor: "area"
             },
             {
-                Header: "description",
-                accessor: "description"
+                Header: "street",
+                accessor: "address.street"
             },
             {
-                Header: "created",
-                accessor: "created"
-            }
+                Header: "house number",
+                accessor: "address.houseNumber"
+            },
+            {
+                Header: "city",
+                accessor: "address.city"
+            },
+            // {
+            //     Header: "description",
+            //     accessor: "description"
+            // },
+            // {
+            //     Header: "created",
+            //     accessor: "created"
+            // }
 
         ];
 
@@ -70,6 +83,7 @@ class FindRoom extends React.Component {
                         window.location.replace(url);
                     }
                 })}
+                className="-striped -highlight"
             />
         );
     };

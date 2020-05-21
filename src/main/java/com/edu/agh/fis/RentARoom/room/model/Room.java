@@ -1,5 +1,6 @@
 package com.edu.agh.fis.RentARoom.room.model;
 
+import com.edu.agh.fis.RentARoom.security.user.model.User;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -27,6 +28,10 @@ public class Room {
 
     @CreationTimestamp
     private Date created;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
     public Long getId() {
         return id;
@@ -82,5 +87,13 @@ public class Room {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
