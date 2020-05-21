@@ -1,9 +1,11 @@
 package com.edu.agh.fis.RentARoom.room.controller;
 
 import com.edu.agh.fis.RentARoom.room.DTOs.AreaToPriceStatisticDTO;
+import com.edu.agh.fis.RentARoom.room.DTOs.RoomWithMessageDTO;
 import com.edu.agh.fis.RentARoom.room.model.Room;
 import com.edu.agh.fis.RentARoom.room.service.RoomService;
-import com.edu.agh.fis.RentARoom.security.user.repository.UserRepository;
+import com.edu.agh.fis.RentARoom.security.user.service.EmailService;
+import com.edu.agh.fis.RentARoom.security.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,7 +25,10 @@ public class RoomController {
     private RoomService roomService;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
+
+    @Autowired
+    private EmailService emailService;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String addRoom(@RequestBody Room room) {
@@ -35,7 +40,7 @@ public class RoomController {
             username = principal.toString();
         }
 
-        room.setUser(userRepository.findByUsername(username));
+        room.setUser(userService.findByUsername(username));
         roomService.save(room);
         return "redirect:/";
     }
@@ -68,6 +73,12 @@ public class RoomController {
                 .collect(Collectors.toList());
 
         return new AreaToPriceStatisticDTO(priceList, areaList);
+    }
+
+    @RequestMapping(value = "/send-message-to-room-owner", method = RequestMethod.POST)
+    public String sendMailToRoomOwner(@RequestBody RoomWithMessageDTO roomWithMessageDTO) {
+        emailService.sendMessageToRoomOwner(roomWithMessageDTO.getEmail(), roomWithMessageDTO.getMessage());
+        return "redirect:/";
     }
 
 }
