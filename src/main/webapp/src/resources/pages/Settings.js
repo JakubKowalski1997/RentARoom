@@ -13,7 +13,8 @@ class Settings extends React.Component {
             userName: '',
             newPassword: '',
             newPasswordConfirm: '',
-            message: ''
+            message: '',
+            proper: false
         };
 
         fetch("/username")
@@ -49,6 +50,7 @@ class Settings extends React.Component {
         }).then((responseData) => {
             console.log(responseData);
             this.setState({
+                proper: responseData.proper,
                 message: responseData.errorMessage
             });
             // if (response.url.indexOf("login") !== -1) {
@@ -118,7 +120,7 @@ class Settings extends React.Component {
             <div className="row h-100 justify-content-center align-items-center">
                 <div className="col-sm-12 text-center">
                     {
-                        this.state.message === "Your password has been changed"
+                        this.state.proper === true
                             ? <span className="changed">{this.state.message}</span>
                             : <span className="notChanged">{this.state.message}</span>
                     }

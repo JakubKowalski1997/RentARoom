@@ -48,7 +48,7 @@ public final class PasswordUtils {
             return new ChangePasswordResponse(false,"New password is same as your current password");
         }
         if (!checkPassword(password.getNewPassword(), false, false, false)) {
-            return new ChangePasswordResponse(false,"wrong format of password");
+            return new ChangePasswordResponse(false,"Wrong format of password");
         }
         return new ChangePasswordResponse(true,"Your password has been changed");
     }
