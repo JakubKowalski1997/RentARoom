@@ -32,15 +32,7 @@ public class RoomController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String addRoom(@RequestBody Room room) {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username;
-        if (principal instanceof UserDetails) {
-            username = ((UserDetails) principal).getUsername();
-        } else {
-            username = principal.toString();
-        }
-
-        room.setUser(userService.findByUsername(username));
+        room.setUser(userService.findByUsername(getLoggedUsername()));
         roomService.save(room);
         return "redirect:/";
     }
@@ -49,6 +41,16 @@ public class RoomController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Room> getAllRooms() {
         return roomService.findAll();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public List<Room> getAllRoomsOfLoggedUser() {
+        String username = getLoggedUsername();
+        return roomService.findAll()
+                .stream()
+                .filter(room -> room.getUser().getUsername().equals(username))
+                .collect(Collectors.toList());
     }
 
     @ResponseBody
@@ -81,4 +83,14 @@ public class RoomController {
         return "redirect:/";
     }
 
+    private String getLoggedUsername() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        return username;
+    }
 }

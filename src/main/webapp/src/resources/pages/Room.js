@@ -8,6 +8,8 @@ import {Map as LeafletMap, Marker, Popup, TileLayer} from "react-leaflet";
 import {OpenStreetMapProvider} from "leaflet-geosearch";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import {FaDollarSign, FaMapMarkerAlt, FaWarehouse} from "react-icons/fa"
+import {GoNote} from "react-icons/go"
 
 class Room extends React.Component {
     constructor(props) {
@@ -98,19 +100,36 @@ class Room extends React.Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col">
-                                        <h3>{this.state.dataJSON.price}</h3>
+                                    <div className="col-2 justify-content-center align-items-center">
+                                        <h3 className="center">
+                                            <FaDollarSign />
+                                        </h3>
+                                    </div>
+                                    <div className="col-8">
+                                        <h3>{this.state.dataJSON.price} zł</h3>
 
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col">
-                                        <h3>{this.state.dataJSON.area}</h3>
+                                    <div className="col-2 justify-content-center align-items-center">
+                                        <h3 className="center">
+                                            <FaWarehouse/>
+                                        </h3>
+                                    </div>
+                                    <div className="col-8">
+                                        <h3>{this.state.dataJSON.area} m2</h3>
                                     </div>
                                 </div>
                                 <div className="row">
+                                    <div className="col-2 justify-content-center align-items-center">
+                                        <h3 className="center">
+                                            <FaMapMarkerAlt />
+                                        </h3>
+                                    </div>
                                     <div className="col">
-                                        <h3>{this.state.dataJSON.address.country}</h3>
+                                        <h3>
+                                            {this.state.dataJSON.address.country}
+                                        </h3>
                                     </div>
                                     <div className="col">
                                         <h3>{this.state.dataJSON.address.city}</h3>
@@ -121,9 +140,17 @@ class Room extends React.Component {
                                     <div className="col">
                                         <h3>{this.state.dataJSON.address.street}</h3>
                                     </div>
+                                    <div className="col">
+                                        <h3>{this.state.dataJSON.address.houseNumber}</h3>
+                                    </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col">
+                                    <div className="col-2 justify-content-center align-items-center">
+                                        <h3 className="center">
+                                            <GoNote/>
+                                        </h3>
+                                    </div>
+                                    <div className="col-8">
                                         <h3>{this.state.dataJSON.description}</h3>
                                     </div>
                                 </div>
@@ -179,13 +206,13 @@ class Room extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        : <h3/>
+                    : <h3/>
+                    }
+
+                    </div>
+                    );
                 }
 
-            </div>
-        );
-    }
+                }
 
-}
-
-export default withRouter(Room);
+                export default withRouter(Room);

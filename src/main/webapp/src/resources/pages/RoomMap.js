@@ -15,8 +15,8 @@ class RoomMap extends React.Component {
             addressList: [],
             markers: [],
             dataJSON: "",
-            labels:[],
-            ids:[]
+            labels: [],
+            ids: []
         };
 
     }
@@ -74,34 +74,41 @@ class RoomMap extends React.Component {
         console.log(this.state.markers);
 
         return (
-            <LeafletMap
-                center={[52, 19]}
-                zoom={6}
-                maxZoom={10}
-                attributionControl={true}
-                zoomControl={true}
-                doubleClickZoom={true}
-                scrollWheelZoom={true}
-                dragging={true}
-                animate={true}
-                easeLinearity={0.35}
-            >
-                <TileLayer
-                    attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                {this.state.markers.map((position, idx) =>
-                    <Marker key={`marker-${idx}`} position={position}>
-                        <Popup>
-                            <div>
-                                <span>{this.state.labels[idx]}</span>
-                                <br/>
-                                <a href={this.state.ids[idx]}>Go to room</a>
-                            </div>
-                        </Popup>
-                    </Marker>
-                )}
-            </LeafletMap>
+            <div className="container">
+                <div className="row justify-content-center align-items-center top-buffer position-relative">
+
+                    <LeafletMap
+                        className="mapFullSize"
+                        center={[52, 19]}
+                        zoom={6}
+                        maxZoom={10}
+                        attributionControl={true}
+                        zoomControl={true}
+                        doubleClickZoom={true}
+                        scrollWheelZoom={true}
+                        dragging={true}
+                        animate={true}
+                        easeLinearity={0.35}
+
+                    >
+                        <TileLayer
+                            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        {this.state.markers.map((position, idx) =>
+                            <Marker key={`marker-${idx}`} position={position}>
+                                <Popup>
+                                    <div>
+                                        <span>{this.state.labels[idx]}</span>
+                                        <br/>
+                                        <a href={this.state.ids[idx]}>Go to room</a>
+                                    </div>
+                                </Popup>
+                            </Marker>
+                        )}
+                    </LeafletMap>
+                </div>
+            </div>
         );
     }
 }

@@ -114,7 +114,7 @@ class RentRoomForm extends React.Component {
                 <Row>
                     <Col>
                         <Form.Group controlId="formGridName">
-                            <Form.Label>street</Form.Label>
+                            <Form.Label>Street</Form.Label>
                             <Form.Control type="text" name="street" value={this.state.street}
                                           onChange={this.handleChange}/>
                         </Form.Group>
@@ -130,7 +130,7 @@ class RentRoomForm extends React.Component {
 
                     <Col>
                         <Form.Group controlId="formGridName">
-                            <Form.Label>city</Form.Label>
+                            <Form.Label>City</Form.Label>
                             <Form.Control type="text" name="city" value={this.state.city}
                                           onChange={this.handleChange}/>
                         </Form.Group>
@@ -138,7 +138,7 @@ class RentRoomForm extends React.Component {
 
                     <Col>
                         <Form.Group controlId="formGridName">
-                            <Form.Label>zipcode</Form.Label>
+                            <Form.Label>Zipcode</Form.Label>
                             <Form.Control type="text" name="zipcode" value={this.state.zipcode}
                                           onChange={this.handleChange}/>
                         </Form.Group>
@@ -146,7 +146,7 @@ class RentRoomForm extends React.Component {
 
                     <Col>
                         <Form.Group controlId="formGridName">
-                            <Form.Label>country</Form.Label>
+                            <Form.Label>Country</Form.Label>
                             <Form.Control type="text" name="country" value={this.state.country}
                                           onChange={this.handleChange}/>
                         </Form.Group>

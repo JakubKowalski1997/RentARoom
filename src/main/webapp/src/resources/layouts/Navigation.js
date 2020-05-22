@@ -11,8 +11,7 @@ const navList = [
     {name: "Find room", path: "/find-room"},
     {name: "Rent room", path: "/rent-room"},
     {name: "Map", path: "/map"},
-    {name: "Your rooms", path: "/map"},
-    {name: "Requested rooms", path: "/map"},
+    {name: "Your rooms", path: "/your-rooms"},
     {name: "Statistics", path: "/statistics"}
 ];
 

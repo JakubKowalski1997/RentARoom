@@ -1,5 +1,7 @@
 
-.leaflet-container {
-    height: 400px;
-    width: 800px;
+.mapFullSize {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
 }

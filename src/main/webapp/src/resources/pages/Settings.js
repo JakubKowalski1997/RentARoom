@@ -97,7 +97,7 @@ class Settings extends React.Component {
 
     getChangePasswordForm() {
         return <div>
-            <div className="row h-100 justify-content-center align-items-center">
+            <div className="row h-100 justify-content-center align-items-center top-buffer">
                 <Form
                     onSubmit={e => this.handleSubmit(e)}>
 

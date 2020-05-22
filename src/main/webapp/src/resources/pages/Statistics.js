@@ -11,6 +11,8 @@ class Statistics extends React.Component {
             loading: true,
             priceList: ['priceList'],
             areaList: ['areaList'],
+            allSaves: ['allSaves'],
+            allDates: ['allDates'],
         };
 
     }
@@ -27,6 +29,24 @@ class Statistics extends React.Component {
             .then(data => {
                 this.state.priceList = this.state.priceList.concat(data["priceList"]);
                 this.state.areaList = this.state.areaList.concat(data["areaList"]);
+
+            })
+            .then(() => {
+                this.renderChart();
+                this.state.loading = false;
+            })
+            .catch(error => console.log("Following error occurred: " + error));
+        fetch("/history/rooms-added-by-date")
+            .then(response => {
+                if (response.ok) {
+                    return response;
+                }
+                throw Error(response.status);
+            })
+            .then(response => response.json())
+            .then(data => {
+                this.state.allSaves = this.state.allSaves.concat(data["allSaves"]);
+                this.state.allDates = this.state.allDates.concat(data["allDates"]);
 
             })
             .then(() => {
@@ -53,6 +73,26 @@ class Statistics extends React.Component {
             }
 
         });
+        c3.generate({
+            bindto: "#chart2",
+            data: {
+                x: 'allDates',
+                columns: [this.state.allDates, this.state.allSaves],
+            },
+            axis: {
+                x: {
+                    type: 'timeseries',
+                    tick: {
+                        format: '%Y-%m-%d'
+                    },
+                    label: 'Date'
+                },
+                y: {
+                    label: 'Rooms added'
+                },
+            }
+
+        });
     }
 
     componentDidMount() {
@@ -67,6 +107,7 @@ class Statistics extends React.Component {
         return (
             <div>
                 <div id="chart1"/>
+                <div id="chart2"/>
             </div>
         );
     }

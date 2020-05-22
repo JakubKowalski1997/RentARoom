@@ -8,6 +8,7 @@ import Error404 from "../pages/Error404";
 import Room from "../pages/Room";
 import RoomMap from "../pages/RoomMap";
 import Settings from "../pages/Settings";
+import YourRooms from "../pages/YourRooms";
 
 
 const MainPage = () => {
@@ -16,6 +17,7 @@ const MainPage = () => {
             <Switch>
                 <Route path="/" exact component={FindRoom}/>
                 <Route path="/find-room" component={FindRoom}/>
+                <Route path="/your-rooms" component={YourRooms}/>
                 <Route path="/rent-room" component={RentRoom}/>
                 <Route path="/map" component={RoomMap}/>
                 <Route path="/statistics" component={Statistics}/>
