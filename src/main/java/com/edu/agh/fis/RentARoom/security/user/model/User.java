@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "\"user\"")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,9 +38,6 @@ public class User {
     private Date lastLoginDate;
 
     private String email;
-
-    @JsonIgnore
-    private boolean isUserAccepted;
 
     @JsonIgnore
     @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
@@ -117,14 +114,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public boolean isUserAccepted() {
-        return isUserAccepted;
-    }
-
-    public void setUserAccepted(boolean userAccepted) {
-        isUserAccepted = userAccepted;
     }
 
     public String getRole() {
