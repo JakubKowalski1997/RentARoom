@@ -2,6 +2,8 @@ package com.edu.agh.fis.RentARoom.security.user.model;
 
 import com.edu.agh.fis.RentARoom.room.model.Room;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -41,6 +43,7 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Room> rooms;
 
     public Long getId() {

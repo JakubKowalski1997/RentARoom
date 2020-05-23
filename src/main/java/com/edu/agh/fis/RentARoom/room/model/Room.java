@@ -2,6 +2,8 @@ package com.edu.agh.fis.RentARoom.room.model;
 
 import com.edu.agh.fis.RentARoom.security.user.model.User;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -31,6 +33,7 @@ public class Room {
 
     @ManyToOne
     @JoinColumn(name="user_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
     public Long getId() {

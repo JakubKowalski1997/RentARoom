@@ -32,6 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, requestsWithRequiredAuthentication).authenticated()
+                .antMatchers(HttpMethod.DELETE, "/room/**").authenticated()
                 .antMatchers("/**").permitAll()
                 .and()
                 .formLogin()

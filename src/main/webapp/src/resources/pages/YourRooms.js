@@ -88,7 +88,14 @@ class YourRooms extends React.Component {
             //     Header: "created",
             //     accessor: "created"
             // }
-
+            {
+                Header: 'delete room',
+                Cell: row => (
+                    <div>
+                        <Button onClick={() => this.handleDelete(row.original)}>Delete</Button>
+                    </div>
+                )
+            }
         ];
 
         return (
@@ -104,18 +111,32 @@ class YourRooms extends React.Component {
         );
     };
 
+    handleDelete(original) {
+        console.log(original);
+        fetch("/room/" + original.id, {
+            method: 'DELETE',
+            body: JSON.stringify(original.id),
+            headers: {'Content-Type': 'application/json'}
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response;
+                }
+                throw Error(response.status);
+            })
+            .then(response => response.json())
+            .then(data => {
+
+            })
+            .catch(error => console.log("Following error occurred: " + error));
+        window.location.reload(false);
+    }
+
     getYourRoomsTable(columns) {
         return <ReactTable
             data={this.state.data}
             columns={columns}
             defaultSorted={[{id: "id", desc: true}]}
-            getTrProps={(state, rowInfo) => ({
-                onClick: () => {
-                    console.log(rowInfo);
-                    var url = "/#/room/" + rowInfo.original.id;
-                    window.location.replace(url);
-                }
-            })}
             className="-striped -highlight"
         />;
     }

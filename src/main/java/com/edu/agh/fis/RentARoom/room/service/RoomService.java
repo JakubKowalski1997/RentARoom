@@ -10,4 +10,6 @@ public interface RoomService {
     List<Room> findAll();
 
     Room find(Long id);
+
+    void delete(Long id);
 }

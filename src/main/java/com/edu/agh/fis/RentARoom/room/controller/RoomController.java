@@ -60,6 +60,13 @@ public class RoomController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public String deleteRoom(@PathVariable("id") Long id) {
+        roomService.delete(id);
+        return "redirect:/";
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/area-price-statistic", method = RequestMethod.GET)
     public AreaToPriceStatisticDTO getAreaToPriceStatistic() {
         List<Room> allRooms = roomService.findAll();

@@ -29,4 +29,9 @@ public class RoomServiceImpl implements RoomService {
         Optional<Room> room = roomRepository.findById(id);
         return room.orElseGet(Room::new);
     }
+
+    @Override
+    public void delete(Long id) {
+        roomRepository.deleteById(id);
+    }
 }
