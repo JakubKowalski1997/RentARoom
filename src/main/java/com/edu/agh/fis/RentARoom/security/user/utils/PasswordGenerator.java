@@ -3,7 +3,14 @@ package com.edu.agh.fis.RentARoom.security.user.utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
+/**
+ * Password generator
+ *
+ *
+ * @author  Jakub Kowalski
+ * @version 1.0
+ * @since   2020-05-30
+ */
 public final class PasswordGenerator {
 
     private static final String LOWER = "abcdefghijklmnopqrstuvwxyz";
@@ -21,6 +28,10 @@ public final class PasswordGenerator {
         this.useDigits = builder.useDigits;
     }
 
+    /**
+     * This method is generate random password
+     * @param length length of generated password
+     */
     public String generate(int length) {
         // Argument Validation.
         if (length <= 0) {

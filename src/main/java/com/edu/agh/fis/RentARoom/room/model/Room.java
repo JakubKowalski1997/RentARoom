@@ -8,7 +8,14 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-
+/**
+ * Room model
+ *
+ *
+ * @author  Jakub Kowalski
+ * @version 1.0
+ * @since   2020-05-30
+ */
 @Entity
 @Table(name = "room")
 public class Room {

@@ -13,6 +13,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+/**
+ * Web security config
+ *
+ *
+ * @author  Jakub Kowalski
+ * @version 1.0
+ * @since   2020-05-30
+ */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -25,6 +33,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * This method is used configure security
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         final String[] requestsWithRequiredAuthentication = {"/room", "change-passwd"};

@@ -1,10 +1,13 @@
 package com.edu.agh.fis.RentARoom.room.DTOs;
 
-import org.hibernate.annotations.CreationTimestamp;
-
-import java.math.BigDecimal;
-import java.util.Date;
-
+/**
+ * RoomDTO
+ *
+ *
+ * @author  Jakub Kowalski
+ * @version 1.0
+ * @since   2020-05-30
+ */
 public class RoomDTO {
 
     private String title;

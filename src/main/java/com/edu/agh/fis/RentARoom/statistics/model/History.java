@@ -3,7 +3,14 @@ package com.edu.agh.fis.RentARoom.statistics.model;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
-
+/**
+ * Model for statistic about number of rooms added by date
+ *
+ *
+ * @author  Jakub Kowalski
+ * @version 1.0
+ * @since   2020-05-30
+ */
 @Entity
 @Table(name = "history")
 public class History {

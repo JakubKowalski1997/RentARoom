@@ -9,6 +9,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+/**
+ * Security service
+ *
+ *
+ * @author  Jakub Kowalski
+ * @version 1.0
+ * @since   2020-05-30
+ */
 @Service
 public class SecurityServiceImpl implements SecurityService {
 
@@ -20,11 +28,19 @@ public class SecurityServiceImpl implements SecurityService {
 
     private static final Logger logger = LoggerFactory.getLogger(SecurityServiceImpl.class);
 
+    /**
+     * Get actual logged in username
+     */
     @Override
     public String findLoggedInUsername() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
+    /**
+     * This method is used to autologin user after login
+     * @param username  username
+     * @param password  password
+     */
     @Override
     public void autologin(String username, String password) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);

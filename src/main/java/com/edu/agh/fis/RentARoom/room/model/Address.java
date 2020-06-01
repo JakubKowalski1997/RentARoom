@@ -1,7 +1,14 @@
 package com.edu.agh.fis.RentARoom.room.model;
 
 import javax.persistence.Embeddable;
-
+/**
+ * Address model
+ *
+ *
+ * @author  Jakub Kowalski
+ * @version 1.0
+ * @since   2020-05-30
+ */
 @Embeddable
 public class Address {
 

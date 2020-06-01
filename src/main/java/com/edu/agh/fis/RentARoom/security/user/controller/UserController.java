@@ -21,6 +21,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collections;
 import java.util.Map;
 
+/**
+ * Security service
+ *
+ *
+ * @author  Jakub Kowalski
+ * @version 1.0
+ * @since   2020-05-30
+ */
 @Controller
 public class UserController {
     private final static Logger log = Logger.getLogger(UserController.class);
@@ -37,6 +45,9 @@ public class UserController {
     @Autowired
     private EmailService emailService;
 
+    /**
+     * This method is used to GET page to remind password
+     */
     @RequestMapping(value = "/remind-passwd", method = RequestMethod.GET)
     public String remindPasswd(Model model) {
         model.addAttribute("userForm", new User());
@@ -44,6 +55,9 @@ public class UserController {
         return "remind-passwd";
     }
 
+    /**
+     * This method is used to POST remind password
+     */
     @RequestMapping(value = "/remind-passwd", method = RequestMethod.POST)
     public String remindPasswd(@ModelAttribute("userForm") User userForm) {
 
@@ -55,12 +69,18 @@ public class UserController {
         return "redirect:/";
     }
 
+    /**
+     * This method is used to GET page with registration
+     */
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
         return "registration";
     }
 
+    /**
+     * This method is used to POST form with registration
+     */
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
 
@@ -79,6 +99,9 @@ public class UserController {
         return "redirect:/";
     }
 
+    /**
+     * This method is used to GET page with login
+     */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
         if (error != null)
@@ -94,6 +117,9 @@ public class UserController {
         return "403";
     }
 
+    /**
+     * This method is used to GET username
+     */
     @RequestMapping(value = "/username", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, String> loggedUser() {
@@ -101,6 +127,9 @@ public class UserController {
         return Collections.singletonMap("username", username);
     }
 
+    /**
+     * This method is used to POST form with change password request
+     */
     @RequestMapping(value = "/change-passwd", method = RequestMethod.POST)
     @ResponseBody
     public ChangePasswordResponse changePasswd(@RequestBody ChangePasswordRequest password) {

@@ -10,6 +10,14 @@ import org.springframework.context.annotation.Configuration;
 
 import static com.edu.agh.fis.RentARoom.statistics.model.Action.SAVE;
 
+/**
+ * AOP for adding number of new rooms added in day
+ *
+ *
+ * @author  Jakub Kowalski
+ * @version 1.0
+ * @since   2020-05-30
+ */
 @Aspect
 @Configuration
 public class HistoryAspect {

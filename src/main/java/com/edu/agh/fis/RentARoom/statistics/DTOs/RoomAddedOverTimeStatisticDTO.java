@@ -3,6 +3,15 @@ package com.edu.agh.fis.RentARoom.statistics.DTOs;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * DTOs for statistic about number of rooms added by date
+ *
+ *
+ * @author  Jakub Kowalski
+ * @version 1.0
+ * @since   2020-05-30
+ */
+
 public class RoomAddedOverTimeStatisticDTO {
     private List<Long> allSaves;
     private List<LocalDate> allDates;

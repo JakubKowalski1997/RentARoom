@@ -16,7 +16,14 @@ import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ * Room controller
+ *
+ *
+ * @author  Jakub Kowalski
+ * @version 1.0
+ * @since   2020-05-30
+ */
 @Controller
 @RequestMapping(value = "/room")
 public class RoomController {
@@ -30,6 +37,9 @@ public class RoomController {
     @Autowired
     private EmailService emailService;
 
+    /**
+     * This method is used to POST new room
+     */
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String addRoom(@RequestBody Room room) {
         room.setUser(userService.findByUsername(getLoggedUsername()));
@@ -37,12 +47,18 @@ public class RoomController {
         return "redirect:/";
     }
 
+    /**
+     * This method is used to GET all rooms
+     */
     @ResponseBody
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Room> getAllRooms() {
         return roomService.findAll();
     }
 
+    /**
+     * This method is used to GET username
+     */
     @ResponseBody
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public List<Room> getAllRoomsOfLoggedUser() {
@@ -53,12 +69,18 @@ public class RoomController {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * This method is used to GET room by id
+     */
     @ResponseBody
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Room getRoom(@PathVariable("id") Long id) {
         return roomService.find(id);
     }
 
+    /**
+     * This method is used to DELETE room by id
+     */
     @ResponseBody
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public String deleteRoom(@PathVariable("id") Long id) {
@@ -66,6 +88,9 @@ public class RoomController {
         return "redirect:/";
     }
 
+    /**
+     * This method is used to GET area by price statistic
+     */
     @ResponseBody
     @RequestMapping(value = "/area-price-statistic", method = RequestMethod.GET)
     public AreaToPriceStatisticDTO getAreaToPriceStatistic() {
@@ -84,6 +109,9 @@ public class RoomController {
         return new AreaToPriceStatisticDTO(priceList, areaList);
     }
 
+    /**
+     * This method is used to send message to room owner
+     */
     @RequestMapping(value = "/send-message-to-room-owner", method = RequestMethod.POST)
     public String sendMailToRoomOwner(@RequestBody RoomWithMessageDTO roomWithMessageDTO) {
         emailService.sendMessageToRoomOwner(roomWithMessageDTO.getEmail(), roomWithMessageDTO.getMessage());

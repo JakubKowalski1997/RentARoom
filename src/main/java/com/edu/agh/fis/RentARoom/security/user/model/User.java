@@ -8,7 +8,14 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
-
+/**
+ * User model
+ *
+ *
+ * @author  Jakub Kowalski
+ * @version 1.0
+ * @since   2020-05-30
+ */
 @Entity
 @Table(name = "\"user\"")
 public class User {

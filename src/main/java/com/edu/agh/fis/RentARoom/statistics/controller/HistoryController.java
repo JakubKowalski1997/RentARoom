@@ -19,6 +19,14 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * Controller for retriving statistics in applciation
+ *
+ *
+ * @author  Jakub Kowalski
+ * @version 1.0
+ * @since   2020-05-30
+ */
 @Controller
 @RequestMapping(value = "/history")
 public class HistoryController {
@@ -26,6 +34,10 @@ public class HistoryController {
     @Autowired
     private HistoryService historyService;
 
+
+    /**
+     * This method is used to get statistic about number of rooms added by date
+     */
     @RequestMapping(value = "/rooms-added-by-date", method = RequestMethod.GET)
     @ResponseBody
     public RoomAddedOverTimeStatisticDTO userConfirmation(){

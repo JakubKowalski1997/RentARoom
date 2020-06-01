@@ -8,6 +8,14 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+/**
+ * Password utils
+ *
+ *
+ * @author  Jakub Kowalski
+ * @version 1.0
+ * @since   2020-05-30
+ */
 @Component
 public class UserValidator implements Validator {
 
@@ -19,6 +27,9 @@ public class UserValidator implements Validator {
         return User.class.equals(aClass);
     }
 
+    /**
+     * This method is used to validate password
+     */
     @Override
     public void validate(Object o, Errors errors) {
         User user = (User) o;

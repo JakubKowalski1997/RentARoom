@@ -1,5 +1,12 @@
 package com.edu.agh.fis.RentARoom.security.user.DTOs;
-
+/**
+ * ChangePasswordRequest
+ *
+ *
+ * @author  Jakub Kowalski
+ * @version 1.0
+ * @since   2020-05-30
+ */
 public class ChangePasswordRequest {
     private String newPassword;
     private String newPasswordConfirm;

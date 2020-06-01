@@ -9,7 +9,14 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-
+/**
+ * Email service used to send emails from application
+ *
+ *
+ * @author  Jakub Kowalski
+ * @version 1.0
+ * @since   2020-05-30
+ */
 @Service
 public class EmailServiceImpl implements EmailService {
 
@@ -18,6 +25,12 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     public JavaMailSender emailSender;
 
+    /**
+     * This method is used to send email with actual changed password.
+     * @param to address which mail will be sent to
+     * @param user  username
+     * @param password  temporary generated password
+     */
     @Async
     @Override
     public void sendTempPasswdMessage(String to, String user, String password){
@@ -39,6 +52,11 @@ public class EmailServiceImpl implements EmailService {
         emailSender.send(message);
     }
 
+    /**
+     * This method is used to send email to room owner
+     * @param to address which mail will be sent to
+     * @param messageToRoomOwner  body of message
+     */
     @Async
     @Override
     public void sendMessageToRoomOwner(String to, String messageToRoomOwner) {

@@ -7,6 +7,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Random;
 
+/**
+ * Password utils
+ *
+ *
+ * @author  Jakub Kowalski
+ * @version 1.0
+ * @since   2020-05-30
+ */
 public final class PasswordUtils {
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -15,6 +23,13 @@ public final class PasswordUtils {
         bCryptPasswordEncoder = new BCryptPasswordEncoder();
     }
 
+    /**
+     * This method is used to check correctness of password
+     * @param password password to check
+     * @param useLower password contains lower
+     * @param useUpper password contains upper
+     * @param useDigits password contains digits
+     */
     public boolean checkPassword(String password, boolean useLower, boolean useUpper, boolean useDigits) {
         if (password.length() < 8)
             return false;
@@ -28,6 +43,9 @@ public final class PasswordUtils {
         return !useDigits || password.matches(".*[a-z]+.*");
     }
 
+    /**
+     * This method is used to generate password
+     */
     public static String generateTemporaryPassword() {
         PasswordGenerator passwordGenerator = new PasswordGenerator.PasswordGeneratorBuilder()
                 .useDigits(true)
